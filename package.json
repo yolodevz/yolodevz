@@ -1,19 +1,21 @@
 {
   "private": true,
+  "name": "yolodevz",
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev --filter",
+    "start": "turbo run start",
+    "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "clean": "turbo run clean && rm -rf node_modules"
   },
   "devDependencies": {
-    "@turbo/gen": "^1.9.7",
-    "eslint": "^7.32.0",
+    "@turbo/gen": "^2.0.0",
+    "caniuse-lite": "^1.0.30001762",
+    "eslint": "^9.0.0",
     "eslint-config-custom": "workspace:*",
-    "prettier": "^2.5.1",
-    "turbo": "latest"
+    "prettier": "^3.0.0",
+    "turbo": "^2.0.0"
   },
-  "packageManager": "pnpm@7.15.0",
-  "name": "resume"
+  "packageManager": "pnpm@9.0.0"
 }

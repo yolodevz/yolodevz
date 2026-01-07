@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 
 import { impact, helvetica } from "../fonts/local";
 
+import { Analytics } from "@vercel/analytics/next"
+
 import "@yolo/ui/styles/global.css";
 
 export const metadata: Metadata = {
@@ -18,8 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`flex min-h-screen flex-col bg-background ${impact.variable} ${helvetica.variable}`}
+        className={`flex min-h-screen flex-col bg-background theme-light ${impact.variable} ${helvetica.variable}`}
       >
+        <Analytics/>
         {children}
       </body>
     </html>

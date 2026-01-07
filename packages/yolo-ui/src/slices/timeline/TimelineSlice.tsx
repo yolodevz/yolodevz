@@ -294,9 +294,11 @@ export const TimelineSlice: React.FC = () => {
     <AnimatePresence initial={false}>
       <Container
         id="experience"
-        outerClassName="theme-light pt-5 md:pt-20 pb-16 md:pb-32 rounded-section"
-        innerClassName="max-w-screen-xl"
+        outerClassName="bg-black !px-0"
+        innerClassName="bg-background !max-w-full pt-5 md:pt-20 pb-16 md:pb-32 rounded-section"
       >
+        <div className='max-w-screen-xl mx-auto'>
+
         <Headline />
         <Text
           size="h2-md"
@@ -371,6 +373,7 @@ export const TimelineSlice: React.FC = () => {
             />
           </Carousel>
         </Container>
+        </div>
       </Container>
     </AnimatePresence>
   );

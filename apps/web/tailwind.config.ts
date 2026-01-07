@@ -1,7 +1,26 @@
-const { createFluidFontSize } = require("utils");
+import type { Config } from "tailwindcss";
+import typography from "@tailwindcss/typography";
 
-module.exports = {
-  content: ["./src/**/*.{js,ts,jsx,tsx}"],
+/**
+ * Creates fluid font sizes using CSS clamp
+ */
+const createFluidFontSize = (
+  minSize: number,
+  maxSize: number,
+  minScreenSize: number = 390,
+  maxScreenSize: number = 1440
+) => {
+  const pxToRem = (px: number) => `${Math.round((px / 16 + Number.EPSILON) * 100) / 100}rem`;
+  const vwCalc = Math.round(((100 * (maxSize - minSize)) / (maxScreenSize - minScreenSize) + Number.EPSILON) * 100) / 100;
+  const remCalc = Math.round(((minScreenSize * maxSize - maxScreenSize * minSize) / (minScreenSize - maxScreenSize) + Number.EPSILON) * 100) / 100;
+  return `clamp(${pxToRem(minSize)}, ${vwCalc}vw + ${pxToRem(remCalc)}, ${pxToRem(maxSize)})`;
+};
+
+const config: Config = {
+  content: [
+    "../../packages/yolo-ui/src/**/*.{js,ts,jsx,tsx}",
+    "./app/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {
       screens: {
@@ -30,24 +49,20 @@ module.exports = {
       },
       keyframes: {
         "fade-in": {
-          from: { opacity: 0 },
-          to: { opacity: 1 },
+          from: { opacity: "0" },
+          to: { opacity: "1" },
         },
       },
       fontSize: {
-        // H1
         h1: createFluidFontSize(20, 24),
         "h1-lg": createFluidFontSize(24, 48),
-        // H2
         "h2-xs": createFluidFontSize(8, 10),
         "h2-sm": createFluidFontSize(10, 12),
         h2: createFluidFontSize(12, 14),
         "h2-md": createFluidFontSize(14, 16),
         "h2-lg": createFluidFontSize(16, 24),
-        // Body
         "body-sm": createFluidFontSize(10, 12),
         body: createFluidFontSize(14, 16),
-        // Deco
         "deco-xs": createFluidFontSize(25, 40),
         "deco-sm": createFluidFontSize(32, 80),
         deco: createFluidFontSize(56, 160),
@@ -56,5 +71,7 @@ module.exports = {
       },
     },
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [typography],
 };
+
+export default config;
