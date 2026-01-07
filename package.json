@@ -1,6 +1,9 @@
 {
   "private": true,
   "name": "yolodevz",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "scripts": {
     "build": "turbo run build",
     "start": "turbo run start",
